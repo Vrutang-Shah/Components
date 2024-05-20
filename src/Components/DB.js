@@ -1,16 +1,16 @@
 const dummyData = [
   {
     id: 1,
-    first_name: "John",
-    last_name: "Doe",
-    email: "johndoe@gmail.com",
-    mobile: "9876543210",
+    first_name: "Jaimin",
+    last_name: "Shah",
+    email: "jaimin@gmail.com",
+    mobile: "7043831222",
   },
   {
     id: 2,
-    first_name: "John",
-    last_name: "Doe",
-    email: "johndoe@gmail.com",
+    first_name: "Hunain",
+    last_name: "Chhipa",
+    email: "hunain@gmail.com",
     mobile: "9876543210",
   },
   {

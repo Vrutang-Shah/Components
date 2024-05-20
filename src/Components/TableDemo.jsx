@@ -9,27 +9,32 @@ const TableDemo = () => {
   const columns = [
     {
       name: "Sr. No",
-      selector: (row) => row.id,
+      selector: row => row.id,
+      searchKey: "id",
       sortable: true,
     },
     {
       name: "First Name",
-      selector: (row) => row.first_name,
+      selector: row => row.first_name,
+      searchKey: "first_name",
       sortable: true,
     },
     {
       name: "Last Name",
-      selector: (row) => row.last_name,
+      selector: row => row.last_name,
+      searchKey: "last_name",
       sortable: true,
     },
     {
       name: "Email",
-      selector: (row) => row.email,
+      selector: row => row.email,
+      searchKey: "email",
       sortable: true,
     },
     {
       name: "Mobile",
-      selector: (row) => row.mobile,
+      selector: row => row.mobile,
+      searchKey: "mobile",
       sortable: true,
     },
   ];
