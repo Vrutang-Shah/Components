@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useSearch = (data, columns) => {
   const [filteredData, setFilteredData] = useState(data);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchColumn, setSearchColumn] = useState(columns[0]?.searchKey || "first_name");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchColumn, setSearchColumn] = useState(columns[0]?.searchKey || 'first_name');
   const [suggestions, setSuggestions] = useState([]);
+  const [isSuggestionClicked, setIsSuggestionClicked] = useState(false);
 
   useEffect(() => {
     const updateSuggestions = () => {
@@ -13,7 +14,7 @@ const useSearch = (data, columns) => {
 
       data.forEach(item => {
         const value = item[searchColumn]?.toString().toLowerCase();
-        if (value?.includes(searchTerm.toLowerCase()) && !suggestionSet.has(value)) {
+        if (value?.includes(searchTerm.toString().toLowerCase()) && !suggestionSet.has(value)) {
           suggestionSet.add(value);
           filteredSuggestions.push(item);
         }
@@ -24,14 +25,19 @@ const useSearch = (data, columns) => {
 
     const updateFilteredData = () => {
       const filtered = data.filter(item =>
-        item[searchColumn]?.toString().toLowerCase().includes(searchTerm.toLowerCase())
+        item[searchColumn]?.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())
       );
       setFilteredData(filtered);
     };
 
-    updateSuggestions();
+    if (!isSuggestionClicked) {
+      updateSuggestions();
+    }
+
     updateFilteredData();
-  }, [searchTerm, searchColumn, data]);
+  }, [searchTerm, searchColumn, data, isSuggestionClicked]);
+
+  const clearSuggestions = () => setSuggestions([]);
 
   return {
     filteredData,
@@ -40,6 +46,8 @@ const useSearch = (data, columns) => {
     suggestions,
     setSearchTerm,
     setSearchColumn,
+    clearSuggestions,
+    setIsSuggestionClicked
   };
 };
 
